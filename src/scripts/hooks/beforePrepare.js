@@ -18,7 +18,7 @@
     platforms.forEach(platform => {
       if (platform === IOS) {
         iosPlist.addBranchSettings(preferences);
-        iosCapabilities.enableAssociatedDomains(preferences);
+//        iosCapabilities.enableAssociatedDomains(preferences);
         iosAssociatedDomains.addAssociatedDomains(preferences);
       }
     });
