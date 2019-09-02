@@ -18,8 +18,11 @@
 
 // Respond to URI scheme links
 - (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options {
+  NSLog(@"Open URL %@", url);
+
   // pass the url to the handle deep link call
   if (![[Branch getInstance] application:app openURL:url options:options]) {
+  NSLog(@"Open URL: unhandled");
     // do other deep link routing for the Facebook SDK, Pinterest SDK, etc
     [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:CDVPluginHandleOpenURLNotification object:url]];
     // send unhandled URL to notification
@@ -30,9 +33,12 @@
 
 // Respond to Universal Links
 - (BOOL)application:(UIApplication *)application continueUserActivity:(NSUserActivity *)userActivity restorationHandler:(void (^)(NSArray *restorableObjects))restorationHandler {
+  NSLog(@"continue activity %@", [userActivity.webpageURL absoluteString]);
   if (![[Branch getInstance] continueUserActivity:userActivity]) {
+    NSLog(@"continue activity: unhandled");
     // send unhandled URL to notification
     if ([userActivity.activityType isEqualToString:NSUserActivityTypeBrowsingWeb]) {
+    NSLog(@"continue activity: unhandled web browsing");
       [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:@"BSDKPostUnhandledURL" object:[userActivity.webpageURL absoluteString]]];
     }
   }
