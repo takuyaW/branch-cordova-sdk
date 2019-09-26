@@ -63,6 +63,7 @@ SOFTWARE.
 
     <source-file src="src/android/io/branch/BranchSDK.java" target-dir="src/io/branch" />
     <framework src="io.branch.sdk.android:library:4.1.1"/>
+    <framework src="com.google.android.gms:play-services-ads:15.0.1"/>
   </platform>
 
   <!-- iOS -->
