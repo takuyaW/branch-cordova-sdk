@@ -63,6 +63,7 @@
     exec(install, (err, stdout, stderr) => {
       // handle error
       if (err) {
+        console.log("MONACA====", err);
         throw new Error(
           `BRANCH SDK: Failed to install Branch node dependency ${module}. Docs https://goo.gl/GijGKP`
         );
